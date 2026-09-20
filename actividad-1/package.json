@@ -1,0 +1,17 @@
+{
+  "name": "actividad1-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+  "build": "tsc",
+  "start": "node dist/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "^18.19.130",
+    "typescript": "5.1"
+  }
+}
