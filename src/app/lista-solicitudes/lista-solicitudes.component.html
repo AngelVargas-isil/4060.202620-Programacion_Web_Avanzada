@@ -1,0 +1,25 @@
+<h2>Lista de solicitudes academicas</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Estudiante</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of lista">
+            <td>{{ item.id }}</td>
+            <td>{{ item.estudiante.nombre }}</td>
+            <td>{{ item.tipo  }}</td>
+            <td>{{ item.estado }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Resumenes generados</h3>
+<ul>
+    <li *ngFor="let resumen of resumenes">{{ resumen }}</li>
+</ul>
