@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Solicitud } from '../models/solicitud.model';
 import { SolicitudService } from '../services/solicitud.service';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-lista-solicitudes',
