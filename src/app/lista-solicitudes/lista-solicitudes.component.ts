@@ -8,14 +8,15 @@ import { SolicitudService } from '../services/solicitud.service';
   styleUrls: ['./lista-solicitudes.component.css']
 })
 export class ListaSolicitudesComponent {
-  lista: Solicitud[] = [];
-  resumenes: string[] = [];
 
   constructor(private solicitudService: SolicitudService){}
 
-  ngOnInit(){
-    this.lista = this.solicitudService.obtenerSolicitudes();
-    this.resumenes = this.solicitudService.obtenerResumenes();
+  get lista(): Solicitud[] {
+    return this.solicitudService.obtenerSolicitudes();
+  }
+
+  get resumenes(): string[] {
+    return this.solicitudService.obtenerResumenes();
   }
 
 }

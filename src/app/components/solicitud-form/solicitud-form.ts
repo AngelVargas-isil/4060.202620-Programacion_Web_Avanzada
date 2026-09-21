@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { SolicitudService } from '../../services/solicitud.service';
 
 @Component({
   selector: 'app-solicitud-form',
@@ -28,7 +29,7 @@ export class SolicitudFormComponent {
 
   mensaje = '';
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private solicitudService: SolicitudService) {}
 
   registrarSolicitud(): void {
 
@@ -39,9 +40,18 @@ export class SolicitudFormComponent {
       return;
     }
 
+    const { nombre, codigo, correo, tipo, descripcion } = this.formulario.value;
+    this.solicitudService.agregar({
+      nombre: nombre ?? '',
+      codigo: codigo ?? '',
+      correo: correo ?? '',
+      tipo: tipo ?? '',
+      descripcion: descripcion ?? ''
+    });
+
     this.mensaje = 'Solicitud registrada correctamente.';
 
-    console.log('Solicitud válida:', this.formulario.value);
+    this.formulario.reset({ nombre: '', codigo: '', correo: '', tipo: '', descripcion: '' });
   }
 
 }

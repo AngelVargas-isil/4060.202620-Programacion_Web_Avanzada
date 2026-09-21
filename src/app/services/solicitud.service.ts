@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Solicitud, Estudiante } from '../models/solicitud.model';
+import { Solicitud, Estudiante, TipoSolicitud } from '../models/solicitud.model';
 import { crearSolicitud, resumen } from '../utils/helpers';
 
 @Injectable({
@@ -23,5 +23,25 @@ private solicitudes: Solicitud[] = [];
   }
   obtenerResumenes(): string[] {
     return this.solicitudes.map(s => resumen(s));
+  }
+
+  agregar(datos: { nombre: string; codigo: string; correo: string; tipo: string; descripcion: string }): void {
+    const nuevoId = this.solicitudes.length
+      ? Math.max(...this.solicitudes.map(s => s.id)) + 1
+      : 1;
+
+    const estudiante: Estudiante = {
+      id: nuevoId,
+      nombre: datos.nombre,
+      codigo: datos.codigo,
+      correo: datos.correo
+    };
+
+    const nueva = crearSolicitud(
+      { estudiante, tipo: datos.tipo as TipoSolicitud, descripcion: datos.descripcion },
+      nuevoId
+    );
+
+    this.solicitudes.push(nueva);
   }
 }
