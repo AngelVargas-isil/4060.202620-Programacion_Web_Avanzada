@@ -30,6 +30,13 @@ Demostrar dominio de JavaScript moderno y TypeScript, componentes en Angular 16,
 
 **Responsable:** Ayrton Mihail Palomino Loli
 
+**Cómo lo trabajé**
+
+1. **Preparé el entorno.** Angular 16 solo funciona con Node 16.14+ o 18.10+ y yo tenía Node 24, así que instalé NVM para Windows, Node 18.20.4 y Angular CLI 16.2.16. Tuve que desinstalar el Node 24 que estaba instalado aparte, porque tapaba la versión de NVM.
+2. **Empecé en un proyecto TypeScript independiente.** Cuando empecé, el repositorio del equipo estaba vacío. Para no esperar, creé un proyecto aparte con TypeScript 5.1 (compatible con Angular 16) y una demo (`main.ts`) para ejecutar y probar la lógica con datos de ejemplo.
+3. **Integré mi código al proyecto Angular.** Cuando mi compañero subió la base a `main`, hice el merge de mi rama, resolví el conflicto del `.gitignore` y moví `models` y `utils` a `src/app/`. La demo y los archivos de configuración de mi proyecto aparte los eliminé, para no pisar los del proyecto.
+4. **Verifiqué la compilación con TypeScript estricto** sobre `src/app/utils`, con la evidencia en la sección de Evidencias.
+
 **Estructura**
 
 ```
@@ -41,42 +48,20 @@ src/app/
     └── validaciones.ts
 ```
 
-**Tipos e interfaces definidos** (`models/solicitud.model.ts`)
+**Qué hice y por qué**
 
-| Elemento | Descripción |
-|---|---|
-| `EstadoSolicitud` | Union type: `'pendiente' \| 'en_proceso' \| 'aprobada' \| 'rechazada'` |
-| `TipoSolicitud` | Union type: `'constancia' \| 'retiro_curso' \| 'reincorporacion' \| 'convalidacion'` |
-| `Estudiante` | Interfaz con `id`, `nombre`, `codigo` y `correo` |
-| `Solicitud` | Interfaz con `id`, `estudiante`, `tipo`, `descripcion`, `estado` y `fecha` |
+- **Empecé por los tipos** (`solicitud.model.ts`). Definí `Estudiante` y `Solicitud` como interfaces porque son las entidades del caso, y los estados y tipos de solicitud como *union types* (`'pendiente' | 'aprobada' | ...`) en lugar de `string`, para que el compilador rechace valores inválidos antes de ejecutar.
+- **Separé `models` de `utils`.** Los tipos van aparte para que los formularios, servicios y componentes de las otras actividades los importen sin duplicarlos.
+- **Usé funciones puras.** `cambiarEstado` y `contarPorEstado` devuelven objetos nuevos con spread en vez de modificar los originales, así una función no cambia datos sin que se note.
+- **Dejé las validaciones en `validaciones.ts`**, para que el formulario reactivo de la Actividad 3 pueda reutilizarlas.
+- **Recursos de ES6+ que usé:** arrow functions, destructuring, spread, template literals, parámetros por defecto, `filter`, `find`, `reduce` y módulos `import`/`export`, además de `Omit` y `Record` de TypeScript.
 
-**Funciones** (`utils/`)
+**Problemas que encontré y cómo los resolví**
 
-- `helpers.ts`: `filtrarPorEstado`, `buscarPorId`, `resumen`, `contarPorEstado`, `cambiarEstado` y `crearSolicitud`.
-- `validaciones.ts`: `esCorreoValido` y `validarEstudiante`.
-
-**Decisiones de estructura**
-
-- **Modelos separados de la lógica:** los tipos viven en `models/` para que componentes, servicios y formularios de las demás actividades los reutilicen sin duplicarlos.
-- **Union types en lugar de `string`:** estados y tipos de solicitud solo aceptan valores válidos, y el compilador detecta errores antes de ejecutar.
-- **Modo estricto:** el código se verifica con `strict` de TypeScript.
-- **Funciones puras e inmutabilidad:** `cambiarEstado` y `contarPorEstado` devuelven objetos nuevos con spread en vez de modificar los originales, lo que evita efectos secundarios.
-- **Validaciones aparte en `validaciones.ts`:** quedan listas para reutilizarse en el formulario reactivo (Actividad 3).
-- **Módulos:** cada archivo exporta lo que ofrece y la lógica se importa con `import`/`export`.
-
-**Recursos de ES6+ y TypeScript utilizados**
-
-| Recurso | Dónde se usa |
-|---|---|
-| Arrow functions | Todas las funciones de `helpers.ts` y `validaciones.ts` |
-| Destructuring | Parámetros de `resumen` y callback de `reduce` en `contarPorEstado` |
-| Spread operator | `cambiarEstado`, `contarPorEstado` y `crearSolicitud` |
-| Template literals | `resumen` |
-| Parámetros por defecto | `crearSolicitud` (estado `'pendiente'`) |
-| `filter`, `find`, `reduce` | `filtrarPorEstado`, `buscarPorId`, `contarPorEstado` |
-| Módulos `import`/`export` | Todos los archivos |
-| `Omit` y `Record` (TypeScript) | `crearSolicitud` y `contarPorEstado` |
-
+- **Node 24 tapaba a Node 18.** `node -v` seguía mostrando la versión 24 aunque NVM decía que usaba la 18. Con `where node` vi que había dos instalaciones y desinstalé la de `Program Files`.
+- **Mi rama y `main` no compartían historial**, porque clonamos un repositorio vacío. Usé `git merge --allow-unrelated-histories` y resolví el conflicto del `.gitignore`.
+- **`ng build` no comprobaba mi código**, porque Angular solo compila lo que se importa desde `main.ts` y todavía nadie usaba `models` ni `utils`. Por eso verifiqué con `tsc --strict` directamente sobre esos archivos.
+- **Errores de `@types/node`.** `tsc` mostraba 88 errores en `node_modules`, ninguno en `src/app`: la versión instalada de `@types/node` es más nueva que TypeScript 5.1. Lo solucioné con `--skipLibCheck`.
 ### Actividad 2: Arquitectura de componentes Angular
 
 [COMPLETAR POR EL EQUIPO]
