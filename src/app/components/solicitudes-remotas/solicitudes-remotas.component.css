@@ -1,0 +1,28 @@
+.remotas-container {
+  padding: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #3f9fd8;
+  color: #fff;
+}
+
+.error {
+  color: #c0392b;
+}
+
+button {
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,34 @@
+<section class="remotas-container">
+
+  <h2>Solicitudes externas (API REST)</h2>
+  <p>Datos obtenidos desde una API REST con HttpClient y adaptados al modelo Solicitud.</p>
+
+  <button type="button" (click)="cargar()" [disabled]="cargando">
+    Recargar
+  </button>
+
+  <p *ngIf="cargando">Cargando datos desde la API...</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <table *ngIf="!cargando && !error">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Estudiante</th>
+        <th>Tipo</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of datos">
+        <td>{{ s.id }}</td>
+        <td>{{ s.estudiante.nombre }}</td>
+        <td>{{ s.tipo }}</td>
+        <td>{{ s.estado }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <a routerLink="/">Volver al inicio</a>
+
+</section>

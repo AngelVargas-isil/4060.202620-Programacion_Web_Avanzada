@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { SolicitudFormComponent } from './components/solicitud-form/solicitud-form';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { SolicitudesRemotasComponent } from './components/solicitudes-remotas/solicitudes-remotas.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'solicitudes/nueva',
     component: SolicitudFormComponent
+  },
+  {
+    path: 'externas',
+    component: SolicitudesRemotasComponent
   }
 ];
 
