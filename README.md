@@ -77,6 +77,7 @@ src/app/
 
 **Estructura**
 
+```
 src/app/
 ├── services/
 │   └── solicitud.service.ts
@@ -85,6 +86,7 @@ src/app/
 │   ├── lista-solicitudes.component.html
 │   └── lista-solicitudes.component.css
 └── app.module.ts
+```
 
 **Qué hice y por qué**
 
