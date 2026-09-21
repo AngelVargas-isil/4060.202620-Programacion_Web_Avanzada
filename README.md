@@ -8,7 +8,7 @@
 | Nombre completo | Rol | Participación |
 |---|---|---|
 | Ayrton Mihail Palomino Loli | Arquitecto / Tipado | Actividad 1: tipado, JavaScript moderno y organización modular |
-| [NOMBRE COMPLETO] | Desarrollador de Componentes/UI | [ACTIVIDAD / TAREAS] |
+| Joseph Mathios Labra Espinal  | Desarrollador de Componentes/UI | Actividad 2: Creación de componentes, servicio inyectado |
 | Roy Giovanni Quiroz Morales | Desarrollo Frontend | Implementación del formulario reactivo, validaciones y navegación |
 | Angel Jesús Vargas Manrique | Integrador de API / Servicios | Actividad 4: Consumo de una API REST desde Angular |
 
@@ -62,9 +62,42 @@ src/app/
 - **Mi rama y `main` no compartían historial**, porque clonamos un repositorio vacío. Usé `git merge --allow-unrelated-histories` y resolví el conflicto del `.gitignore`.
 - **`ng build` no comprobaba mi código**, porque Angular solo compila lo que se importa desde `main.ts` y todavía nadie usaba `models` ni `utils`. Por eso verifiqué con `tsc --strict` directamente sobre esos archivos.
 - **Errores de `@types/node`.** `tsc` mostraba 88 errores en `node_modules`, ninguno en `src/app`: la versión instalada de `@types/node` es más nueva que TypeScript 5.1. Lo solucioné con `--skipLibCheck`.
+
+
 ### Actividad 2: Arquitectura de componentes Angular
 
-[COMPLETAR POR EL EQUIPO]
+**Responsable:** Joseph Mathios Labra Espinal
+
+**Cómo lo trabajé**
+
+1. **Revision de la base** Primero revisé las interfaces que armó mi compañero en la Actividad 1 (Solicitud, Estudiante) para saber exactamente qué estructura de datos iba a iterar.
+2. **Creación del servicio** Para no meter datos quemados directamente en el HTML o en el TS del componente, armé un servicio (SolicitudService), con el comando `ng g s services/solicitud` que provee una lista inicial de pruebas.
+3. **Generación del componente** Creé el ListaSolicitudesComponent y me aseguré de que estuviera correctamente declarado dentro de AppModule para seguir la arquitectura tradicional de módulos de Angular
+4. **Diseño de la vista** Construí la tabla en el HTML iterando los datos del servicio y le di estilos usando CSS puro..
+
+**Estructura**
+
+src/app/
+├── services/
+│   └── solicitud.service.ts
+├── lista-solicitudes/
+│   ├── lista-solicitudes.component.ts
+│   ├── lista-solicitudes.component.html
+│   └── lista-solicitudes.component.css
+└── app.module.ts
+
+**Qué hice y por qué**
+
+- **Inyección de dependencias** Usé el decorador `@Injectable({providedIn: 'root })` en el servicio para que esté disponible en toda la aplicación. Luego lo inyecté en el constructor del componente. Esto separa las responsabilidades: el servicio maneja la data y el componente solo se encarga de pintarla
+- **Directivas estructurales** Para hacer la tabla dinámica, usé la directiva `*ngFor` en la etiqueta <tr>. Decidí usar la sintaxis tradicional `(*ngFor="let item of lista")` en lugar de las nuevas herramientas de control de flujo porque asegura 100% de compatibilidad con Angular 16.
+- **Data binding** Usé interpolación `{{ item.estudiante.nombre }}` para mostrar la información en las celdas de la tabla y en una lista de resúmenes generados.
+- **Estilos CSS** Escribí CSS desde cero en el archivo `.css` del componente para darle un estilo limpio.
+
+**Problemas que encontré y cómo los resolví**
+
+- **Error de sintaxis con @for** Al inicio intenté iterar la lista usando `@for` directamente en el HTML, pero me salio error porque esa sintaxis no esta soportada nativamente en Angular 16, así que lo reemplace por `*ngFor`, lo cual soliciono el problema rapidamente.
+- **Error de componente standalone** Me salió el error `imports is only valid on a component that is standalone` porque dejé un arreglo de imports dentro de la configuración del `@Component`. Como nuestro proyecto usa módulos tradicionales, quité esa línea del decorador y el servidor levantó en verde.
+
 
 ### Actividad 3: Formulario reactivo, validaciones y navegación
 
@@ -196,6 +229,8 @@ Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto 
 ## Conclusiones
 
 **Actividad 1:** definir los tipos antes de construir los componentes evita errores de datos y hace que el código sea más fácil de mantener. Los union types y el modo estricto permiten detectar valores inválidos en compilación, y la separación en `models` y `utils` deja lógica reutilizable para el formulario y el consumo de la API.
+
+**Actividad 2:** Separar la provisión de datos usando un servicio con inyección de dependencias (`@Injectable`) mantuvo nuestro componente visual limpio y fácil de leer. Además, aplicar directivas estructurales tradicionales como `*ngFor` y el `data binding` nos permitió generar una interfaz dinámica y escalable de forma muy rápida, aplicando directamente las buenas prácticas de arquitectura de componentes vistas en clase.
 
 **Actividad 4:** consumir una API REST desde un servicio con `HttpClient` mantiene la vista desacoplada del origen de los datos, y transformar la respuesta al modelo `Solicitud` demuestra cómo adaptar datos externos al dominio del proyecto sin necesidad de un backend propio.
 
