@@ -232,6 +232,8 @@ Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto 
 
 **Actividad 2:** Separar la provisión de datos usando un servicio con inyección de dependencias (`@Injectable`) mantuvo nuestro componente visual limpio y fácil de leer. Además, aplicar directivas estructurales tradicionales como `*ngFor` y el `data binding` nos permitió generar una interfaz dinámica y escalable de forma muy rápida, aplicando directamente las buenas prácticas de arquitectura de componentes vistas en clase.
 
+**La Actividad 3:** permitió implementar un formulario reactivo en Angular con validaciones para controlar el ingreso de datos y configurar la navegación entre las vistas de la plataforma de gestión de solicitudes académicas, verificando además mediante `ng build` que la aplicación compilara correctamente.
+
 **Actividad 4:** consumir una API REST desde un servicio con `HttpClient` mantiene la vista desacoplada del origen de los datos, y transformar la respuesta al modelo `Solicitud` demuestra cómo adaptar datos externos al dominio del proyecto sin necesidad de un backend propio.
 
 [AGREGAR CONCLUSIONES GENERALES DEL EQUIPO Y LA RELACIÓN CON LOS CONTENIDOS DE LAS SESIONES 1 A 4]
