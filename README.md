@@ -77,6 +77,7 @@ src/app/
 
 **Estructura**
 
+```
 src/app/
 ├── services/
 │   └── solicitud.service.ts
@@ -85,6 +86,7 @@ src/app/
 │   ├── lista-solicitudes.component.html
 │   └── lista-solicitudes.component.css
 └── app.module.ts
+```
 
 **Qué hice y por qué**
 
@@ -225,6 +227,15 @@ Si no imprime nada, compila sin errores. Se usa `--skipLibCheck` porque el tipad
 ## Evidencias
 
 Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto del proyecto están guardadas en la carpeta [`evidencias/`](evidencias); haz clic para verlas.
+
+## Matriz de participación
+
+| Integrante | Desarrollo | Pruebas | Documentación | Exposición | Evidencia de participación |
+|---|---|---|---|---|---|
+| [Ayrton Mihail Palomino Loli] | [Alta] | [Alta] | [Alta] | [Sí] | [Commits, información en el READ.md] |
+| [Joseph Mathios Labra Espinal] | [Alta] | [Alta] | [Alta] | [Si] | [Commits, información en el READ.md] |
+| [Roy Giovanni Quiroz Morales] | [Alta] | [Alta] | [Alta] | [Sí] | [Commits, informaciòn en el READ.md] |
+| [Angel Jesús Vargas Manrique] | [Alta] | [Alta] | [Alta] | [Sí] | [Creación del proyecto, commits, informacion en el READ.md] |
 
 ## Conclusiones
 
