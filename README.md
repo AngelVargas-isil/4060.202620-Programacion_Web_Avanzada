@@ -89,23 +89,26 @@ src/app/
 **Estructura**
 
 
-src/app/
-├── components/
-│   ├── inicio/
-│   │   ├── inicio.css
-│   │   ├── inicio.html
-│   │   ├── inicio.spec.ts
-│   │   └── inicio.component.ts
-│   │
-│   └── solicitud-form/
-│       ├── solicitud-form.css
-│       ├── solicitud-form.html
-│       ├── solicitud-form.spec.ts
-│       └── solicitud-form.ts
-│
-├── app-routing.module.ts
-├── app.component.html
-└── app.module.ts
+```text
+src/
+└── app/
+    ├── components/
+    │   ├── inicio/
+    │   │   ├── inicio.css
+    │   │   ├── inicio.html
+    │   │   ├── inicio.spec.ts
+    │   │   └── inicio.ts
+    │   │
+    │   └── solicitud-form/
+    │       ├── solicitud-form.css
+    │       ├── solicitud-form.html
+    │       ├── solicitud-form.spec.ts
+    │       └── solicitud-form.ts
+    │
+    ├── app-routing.module.ts
+    ├── app.component.html
+    └── app.module.ts
+```
 
 **Pasos a seguir**
 
