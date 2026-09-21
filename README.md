@@ -9,7 +9,7 @@
 |---|---|---|
 | Ayrton Mihail Palomino Loli | Arquitecto / Tipado | Actividad 1: tipado, JavaScript moderno y organización modular |
 | [NOMBRE COMPLETO] | Desarrollador de Componentes/UI | [ACTIVIDAD / TAREAS] |
-| [NOMBRE COMPLETO] | Desarrollador de Formularios y Navegación | [ACTIVIDAD / TAREAS] |
+| Roy Giovanni Quiroz Morales | Desarrollo Frontend | Implementación del formulario reactivo, validaciones y navegación |
 | Angel Jesús Vargas Manrique | Integrador de API / Servicios | Actividad 4: Consumo de una API REST desde Angular |
 
 ## Descripción
@@ -68,7 +68,64 @@ src/app/
 
 ### Actividad 3: Formulario reactivo, validaciones y navegación
 
-[COMPLETAR POR EL EQUIPO]
+**Responsable:** Roy Giovanni Quiroz Morales
+
+**Cómo lo trabajé**
+
+1. **Partí del proyecto Angular existente.** Trabajé sobre el proyecto proporcionado por el equipo, sin crear un proyecto nuevo. Primero revisé la estructura existente y mantuve los modelos, utilidades y componentes que ya formaban parte del desarrollo anterior.
+
+2. **Preparé el formulario reactivo.** Creé el componente `SolicitudFormComponent` dentro de `src/app/components/solicitud-form/` y configuré `ReactiveFormsModule` en `app.module.ts` para poder trabajar con formularios reactivos de Angular.
+
+3. **Implementé las validaciones.** Construí un formulario para registrar solicitudes académicas con los campos nombre completo, código de estudiante, correo electrónico, tipo de solicitud y descripción. Se utilizaron validadores de Angular para controlar campos obligatorios, formato de correo y longitud mínima de la descripción.
+
+4. **Implementé la navegación.** Creé el componente `InicioComponent` y configuré las rutas mediante `AppRoutingModule`. Se estableció una ruta principal para la página de inicio y una ruta específica para registrar una nueva solicitud.
+
+5. **Adapté el código a Angular 16.** Durante la implementación encontré que la sintaxis `@if` utilizada inicialmente generaba errores de compilación debido a la versión de Angular del proyecto. La reemplacé por la sintaxis tradicional `*ngIf`, compatible con Angular 16.
+
+6. **Integré mi trabajo con el proyecto del equipo.** El proyecto ya contenía componentes desarrollados por mis compañeros, por lo que integré la Actividad 3 sin eliminar los componentes existentes. Durante el proceso de integración resolví conflictos en `app-routing.module.ts`, `app.component.html` y `app.module.ts`, conservando tanto la funcionalidad existente del equipo como la nueva funcionalidad de la Actividad 3.
+
+7. **Verifiqué la integración.** Después de resolver los conflictos, ejecuté `ng build` y comprobé que la aplicación compilara correctamente. Finalmente, los cambios fueron registrados mediante Git y enviados al repositorio del equipo.
+
+**Estructura**
+
+
+src/app/
+├── components/
+│   ├── inicio/
+│   │   ├── inicio.css
+│   │   ├── inicio.html
+│   │   ├── inicio.spec.ts
+│   │   └── inicio.component.ts
+│   │
+│   └── solicitud-form/
+│       ├── solicitud-form.css
+│       ├── solicitud-form.html
+│       ├── solicitud-form.spec.ts
+│       └── solicitud-form.ts
+│
+├── app-routing.module.ts
+├── app.component.html
+└── app.module.ts
+
+**Pasos a seguir**
+
+Creé SolicitudFormComponent para separar la funcionalidad del registro de solicitudes del componente principal y mantener una estructura modular.
+Utilicé FormBuilder y Validators para construir el formulario reactivo y centralizar sus reglas de validación.
+Validé los campos obligatorios mediante Validators.required, evitando que el usuario pueda enviar un formulario incompleto.
+Validé el correo electrónico mediante Validators.email, mostrando un mensaje específico cuando el formato ingresado no es válido.
+Validé la descripción mediante Validators.minLength(10), estableciendo un mínimo de 10 caracteres.
+Utilicé markAllAsTouched() cuando el formulario es inválido para mostrar las validaciones pendientes después de intentar registrarlo.
+Implementé InicioComponent como punto de entrada de la aplicación para orientar al usuario hacia el registro de una nueva solicitud.
+Configuré RouterModule para permitir la navegación entre la página de inicio y el formulario.
+Utilicé routerLink para realizar la navegación entre las vistas sin necesidad de recargar la aplicación.
+Mantuve router-outlet en app.component.html para que Angular pueda renderizar los componentes correspondientes según la ruta seleccionada.
+Conservé ListaSolicitudesComponent y SolicitudService, que ya formaban parte del trabajo del equipo, al resolver los conflictos de integración.
+
+**Problemas que encontré y cómo los resolví**
+
+Error con la sintaxis @if. El proyecto utiliza Angular 16 y la plantilla con @if generaba errores de compilación. Reemplacé esta sintaxis por *ngIf, compatible con la versión utilizada.
+El componente principal mostraba contenido del proyecto inicial. Reemplacé el contenido de app.component.html por <router-outlet></router-outlet> y posteriormente integré nuevamente el componente ListaSolicitudesComponent existente del equipo.
+
 
 ### Actividad 4: Consumo de una API REST con HttpClient
 
