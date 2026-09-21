@@ -131,26 +131,6 @@ Si no imprime nada, compila sin errores. Se usa `--skipLibCheck` porque el tipad
 
 ## Evidencias
 
-### Actividad 1
-
-| Evidencia | Imagen |
-|---|---|
-| Ejecución del código TypeScript (Node 18) | ![Ejecución](evidencias/actividad-1/evidencia-1-ejecucion.png) |
-| Compilación dentro del proyecto Angular | ![Compilación](evidencias/actividad-1/evidencia-2-compilacion.png) |
-| Error de tipado detectado por TypeScript | ![Error de tipado](evidencias/actividad-1/evidencia-3-error-tipado.png) |
-| Estructura modular | ![Estructura](evidencias/actividad-1/evidencia-4-estructura.png) |
-| Tipos e interfaces | ![Tipos](evidencias/actividad-1/evidencia-5-tipos.png) |
-| Recursos de ES6+ | ![ES6+](evidencias/actividad-1/evidencia-6-es6.png) |
-| Repositorio en GitHub | ![GitHub](evidencias/actividad-1/evidencia-7-github.png) |
-
-La ejecución con datos de ejemplo (listado, filtros, cambio de estado, conteo y validaciones) se realizó en un proyecto TypeScript independiente con Node 18, antes de integrar `models` y `utils` a `src/app`.
-
-### Actividades 2 y 3
-
-[COMPLETAR POR EL EQUIPO]
-
-### Actividad 4
-
 Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto del proyecto están guardadas en la carpeta [`evidencias/`](evidencias); haz clic para verlas.
 
 ## Conclusiones
