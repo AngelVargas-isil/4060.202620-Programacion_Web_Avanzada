@@ -7,10 +7,10 @@
 
 | Nombre completo | Rol | Participación |
 |---|---|---|
-| Ayrton Mihail Palomino Loli | [ROL] | Actividad 1: tipado, JavaScript moderno y organización modular |
-| [NOMBRE COMPLETO] | [ROL] | [ACTIVIDAD / TAREAS] |
-| [NOMBRE COMPLETO] | [ROL] | [ACTIVIDAD / TAREAS] |
-| [NOMBRE COMPLETO] | [ROL] | [ACTIVIDAD / TAREAS] |
+| Ayrton Mihail Palomino Loli | Arquitecto / Tipado | Actividad 1: tipado, JavaScript moderno y organización modular |
+| [NOMBRE COMPLETO] | Desarrollador de Componentes/UI | [ACTIVIDAD / TAREAS] |
+| [NOMBRE COMPLETO] | Desarrollador de Formularios y Navegación | [ACTIVIDAD / TAREAS] |
+| Angel Jesús Vargas Manrique | Integrador de API / Servicios | Actividad 4: Consumo de una API REST desde Angular |
 
 ## Descripción
 
@@ -72,7 +72,42 @@ src/app/
 
 ### Actividad 4: Consumo de una API REST con HttpClient
 
-[COMPLETAR POR EL EQUIPO]
+**Responsable:** Angel Vargas
+
+**Cómo lo trabajé**
+
+1. **Habilité HttpClient.** Importé `HttpClientModule` en `app.module.ts`, que es lo que permite hacer peticiones HTTP en toda la aplicación.
+2. **Creé un servicio dedicado.** Generé `SolicitudApiService` para que toda la lógica de acceso a datos viviera ahí y no dentro del componente, manteniendo la vista desacoplada de la fuente de datos.
+3. **Elegí una API pública de práctica.** Usé JSONPlaceholder (`/users`), que es gratuita y no requiere registro ni credenciales, cumpliendo la indicación de no publicar tokens ni accesos.
+4. **Adapté la respuesta a nuestro modelo.** La API devuelve datos genéricos, así que con el operador `map` de RxJS transformé cada registro en una `Solicitud` de nuestro modelo, para que la tabla fuera coherente con el resto de la app (ID, Estudiante, Tipo, Estado).
+5. **Creé el componente y la vista.** `SolicitudesRemotasComponent` se suscribe al servicio y muestra los datos en una tabla, con estados de "cargando" y "error" y un botón **Recargar**. Agregué la ruta `/externas` y un enlace desde el Inicio.
+6. **Verifiqué la compilación** con `tsc --noEmit`, sin errores.
+
+**Estructura**
+
+```
+src/app/
+├── models/
+│   └── solicitud-api.model.ts            (forma "cruda" que devuelve la API)
+├── services/
+│   └── solicitud-api.service.ts          (HttpClient + mapeo al modelo Solicitud)
+└── components/
+    └── solicitudes-remotas/
+        ├── solicitudes-remotas.component.ts
+        ├── solicitudes-remotas.component.html
+        └── solicitudes-remotas.component.css
+```
+
+**Qué hice y por qué**
+
+- **Puse el `HttpClient` dentro de un servicio** que devuelve un `Observable<Solicitud[]>`. El componente solo se suscribe; la vista no sabe de dónde vienen los datos.
+- **Mapée la respuesta al modelo del caso.** Con `map` de RxJS convierto cada usuario de la API en una `Solicitud` (con su estudiante, tipo y estado). Así reutilizo el mismo modelo tipado de la Actividad 1 y la información tiene sentido dentro del dominio del proyecto.
+- **Manejé los estados de la petición.** Uso banderas `cargando` y `error` para dar retroalimentación en la vista mientras llega la respuesta o si algo falla.
+- **No implementé backend.** Solo *consumo* una API que ya existe; no creo un servidor Node.js, porque ese contenido corresponde a las sesiones 5 a 7.
+
+**Problemas que encontré y cómo los resolví**
+
+- **La tabla mostraba datos genéricos** (id, userId, título) que no cuadraban con lo que veníamos trabajando (ID, estudiante, tipo, estado). Lo resolví mapeando la respuesta de la API a nuestro modelo `Solicitud`, así las columnas quedaron coherentes con el resto de la aplicación.
 
 ## Cómo ejecutar o revisar
 
@@ -110,13 +145,19 @@ Si no imprime nada, compila sin errores. Se usa `--skipLibCheck` porque el tipad
 
 La ejecución con datos de ejemplo (listado, filtros, cambio de estado, conteo y validaciones) se realizó en un proyecto TypeScript independiente con Node 18, antes de integrar `models` y `utils` a `src/app`.
 
-### Actividades 2, 3 y 4
+### Actividades 2 y 3
 
 [COMPLETAR POR EL EQUIPO]
+
+### Actividad 4
+
+Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto del proyecto están guardadas en la carpeta [`evidencias/`](evidencias); haz clic para verlas.
 
 ## Conclusiones
 
 **Actividad 1:** definir los tipos antes de construir los componentes evita errores de datos y hace que el código sea más fácil de mantener. Los union types y el modo estricto permiten detectar valores inválidos en compilación, y la separación en `models` y `utils` deja lógica reutilizable para el formulario y el consumo de la API.
+
+**Actividad 4:** consumir una API REST desde un servicio con `HttpClient` mantiene la vista desacoplada del origen de los datos, y transformar la respuesta al modelo `Solicitud` demuestra cómo adaptar datos externos al dominio del proyecto sin necesidad de un backend propio.
 
 [AGREGAR CONCLUSIONES GENERALES DEL EQUIPO Y LA RELACIÓN CON LOS CONTENIDOS DE LAS SESIONES 1 A 4]
 
