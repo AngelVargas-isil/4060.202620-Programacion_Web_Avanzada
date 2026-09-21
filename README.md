@@ -228,6 +228,15 @@ Si no imprime nada, compila sin errores. Se usa `--skipLibCheck` porque el tipad
 
 Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto del proyecto están guardadas en la carpeta [`evidencias/`](evidencias); haz clic para verlas.
 
+## Matriz de participación
+
+| Integrante | Desarrollo | Pruebas | Documentación | Exposición | Evidencia de participación |
+|---|---|---|---|---|---|
+| [Ayrton Mihail Palomino Loli] | [Alta] | [Alta] | [Alta] | [Sí] | [Commits, información en el READ.md] |
+| [Joseph Mathios Labra Espinal] | [Alta] | [Alta] | [Alta] | [Si] | [Commits, información en el READ.md] |
+| [Roy Giovanni Quiroz Morales] | [Alta] | [Alta] | [Alta] | [Sí] | [Commits, informaciòn en el READ.md] |
+| [Angel Jesús Vargas Manrique] | [Alta] | [Alta] | [Alta] | [Sí] | [Creación del proyecto, commits, informacion en el READ.md] |
+
 ## Conclusiones
 
 **Actividad 1:** definir los tipos antes de construir los componentes evita errores de datos y hace que el código sea más fácil de mantener. Los union types y el modo estricto permiten detectar valores inválidos en compilación, y la separación en `models` y `utils` deja lógica reutilizable para el formulario y el consumo de la API.
