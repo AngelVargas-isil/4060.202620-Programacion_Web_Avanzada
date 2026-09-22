@@ -251,4 +251,4 @@ Las capturas de la Actividad 4 (integración y respuesta de la API) y del resto 
 
 ## Video de exposición
 
-**Video público de YouTube:** [PEGAR AQUÍ EL ENLACE]
+**Video público de YouTube:** https://www.youtube.com/watch?v=ujwH_prod1A
